@@ -36,13 +36,3 @@ export const likeCard = function (likeButton) {
   likeButton.classList.toggle("card__like-button_is-active");
 };
 
-export const openCard = function (imageElement, popup) {
-  const popupImage = popup.querySelector(".popup__image");
-  const popupHeadline = popup.querySelector(".popup__caption");
-
-  popupImage.src = imageElement.src;
-  popupImage.alt = imageElement.alt;
-  popupHeadline.textContent = imageElement.alt;
-
-  openModal(popup);
-};

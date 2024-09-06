@@ -1,14 +1,32 @@
 import "./pages/index.css";
-import { initialCards } from "./components/cards";
 import { createCard, deleteCard, likeCard } from "./components/card";
 import { openModal, closeModal} from "./components/modal";
+import {enableValidation, clearValidation} from "./components/validation";
+import {getUserInfo, getInitialCards, EditUserInfo, addNewCard, renderLoading, editAvatar} from "./components/api"
 
 const placesList = document.querySelector(".places__list");
 const popupEdit = document.querySelector(".popup_type_edit");
 const popupNewCard = document.querySelector(".popup_type_new-card");
 const popupImage = document.querySelector(".popup_type_image");
+const popupAvatarEdit = document.querySelector(".popup_type_avatar_edit");
 const editProfileButton = document.querySelector(".profile__edit-button");
 const addCardButton = document.querySelector(".profile__add-button");
+const editAvatarButton = document.querySelector(".profile__image-overlay");
+const profileForm = popupEdit.querySelector(".popup__form");
+const newCardForm = popupNewCard.querySelector(".popup__form");
+const avatarEditForm = popupAvatarEdit.querySelector(".popup__form");
+const validationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}
+const profileTitle = document.querySelector('.profile__title');
+const profileDescription = document.querySelector('.profile__description');
+const profileImage = document.querySelector('.profile__image');
+let userId;
 
 function fillDefaultValues(modal) {
   const nameInput = modal.querySelector('[name="name"]');
@@ -25,23 +43,67 @@ const openCard = function (imageElement, popup) {
   popupImage.src = imageElement.src;
   popupImage.alt = imageElement.alt;
   popupHeadline.textContent = imageElement.alt;
-
+  
   openModal(popup);
 };
 
+const infoPromises = [getUserInfo(), getInitialCards()]
 
-initialCards.forEach(function (item) {
-  placesList.append(
-    createCard(item, deleteCard, likeCard, openCard, popupImage)
-  );
-});
+Promise.all(infoPromises)
+  .then((results) => {
+    profileTitle.textContent = results[0].name;
+    profileDescription.textContent = results[0].about;
+    profileImage.style.backgroundImage=`url(${results[0].avatar})`;
+    userId = results[0]._id;
+
+    results[1].forEach(function (item) {
+      placesList.append(
+        createCard(item, deleteCard, likeCard, openCard, popupImage, userId)
+      );
+    });
+  })
+  .catch((err) => {
+    console.log(err);
+  })
 
 editProfileButton.addEventListener("click", function () {
+  clearValidation(profileForm, validationConfig);
   openModal(popupEdit);
   fillDefaultValues(popupEdit);
+  enableValidation({
+    formSelector: '.popup_type_edit .popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+  })
 });
+
+editAvatarButton.addEventListener("click", function () {
+  clearValidation(avatarEditForm, validationConfig);
+  openModal(popupAvatarEdit);
+  enableValidation({
+    formSelector: '.popup_type_avatar_edit .popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+  })
+});
+
 addCardButton.addEventListener("click", function () {
+  clearValidation(newCardForm, validationConfig);
   openModal(popupNewCard);
+  enableValidation({
+    formSelector: '.popup_type_new-card .popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+  })
 });
 
 function profileFormHandler() {
@@ -57,8 +119,17 @@ function profileFormHandler() {
     const nameText = document.querySelector(".profile__title");
     const jobText = document.querySelector(".profile__description");
 
-    nameText.textContent = nameInputValue;
-    jobText.textContent = jodbInputValue;
+    renderLoading(true, formElement);
+
+    EditUserInfo(nameInputValue, jodbInputValue)
+      .then((res) => {
+        nameText.textContent = res.name;
+        jobText.textContent = res.about;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {renderLoading(false, formElement)});
     formElement.reset();
 
     closeModal(document.querySelector(".popup_is-opened"));
@@ -68,6 +139,35 @@ function profileFormHandler() {
 }
 
 profileFormHandler();
+
+function AvatarFormHandler() {
+  const formElement = document.querySelector('[name="edit-avatar"]');
+  const linkInput = formElement.querySelector(".popup__input_type_avatar_url");
+
+  function handleFormSubmit(evt) {
+    evt.preventDefault();
+
+    let linkInputValue = linkInput.value;
+
+    renderLoading(true, formElement);
+
+    editAvatar(linkInputValue)
+      .then((res) => {
+        profileImage.style.backgroundImage=`url(${res.avatar})`;
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {renderLoading(false, formElement)});
+    formElement.reset();
+
+    closeModal(document.querySelector(".popup_is-opened"));
+  }
+
+  formElement.addEventListener("submit", handleFormSubmit);
+}
+
+AvatarFormHandler();
 
 function createCardHandler() {
   const formElement = document.querySelector('[name="new-place"]');
@@ -80,10 +180,24 @@ function createCardHandler() {
     const nameInputValue = nameInput.value;
     const linkInputValue = linkInput.value;
 
-    placesList.prepend(
-      createCard({ name: nameInputValue, link: linkInputValue }, deleteCard, likeCard, openCard, popupImage)
-    );
+    //TODO Fix card creation
+    //console.log(nameInputValue);
+   // console.log(linkInputValue);
+    
+    renderLoading(true, formElement);
 
+    addNewCard(nameInputValue, linkInputValue)
+      .then((res) => {
+        placesList.prepend(
+          createCard(res, deleteCard, likeCard, openCard, popupImage, userId)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {renderLoading(false, formElement)});
+
+    
     closeModal(document.querySelector(".popup_is-opened"));
   }
 

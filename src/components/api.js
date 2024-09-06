@@ -38,7 +38,7 @@ export const getInitialCards = () => {
     });
 } 
 
-export const EditUserInfo = (nameData, descriptionData) => {
+export const editUserInfo = (nameData, descriptionData) => {
   return  fetch(config.baseUrl + '/users/me', {
     method: 'PATCH',
     headers: config.headers,

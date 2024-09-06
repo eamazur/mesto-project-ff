@@ -2,7 +2,6 @@ import {handleLikeCard, handleDislikeCard, handleDeleteCard, getLikes} from './a
 
 //Темплейт карточки
 const cardTemplate = document.querySelector("#card-template").content;
-let cardId ='';
 
 const determineIfLiked = (card, userId) => {
   return card.likes.some((like) => {
@@ -39,7 +38,6 @@ export function createCard(card, deleteCard, likeCard, openCard, ImagePopup, use
   cardElementImage.src = cardImage;
   cardElementImage.alt = cardName;
   cardLikeCounter.textContent = card.likes.length;
-  cardId = card._id;
   cardDeleteButton.addEventListener("click", function () {
     deleteCard(card, cardElement);
   });
@@ -59,8 +57,10 @@ export function createCard(card, deleteCard, likeCard, openCard, ImagePopup, use
 }
 //Функция удаления карточки
 export const deleteCard = function (card, cardElement) {
-  handleDeleteCard(card);
-  cardElement.remove();
+  handleDeleteCard(card)
+  .then(() => {
+    cardElement.remove();
+  });
 };
 
 export const likeCard = (card, likeCounter, likeButton) => {
@@ -73,6 +73,7 @@ export const likeCard = (card, likeCounter, likeButton) => {
     console.log(err);
   });
 }
+
 
 export const dislikeCard = (card, likeCounter, likeButton) => {
   handleDislikeCard(card)

@@ -133,7 +133,6 @@ export const handleLikeCard = (card) => {
   })
     .then(res => {
       if (res.ok) {
-        console.log('PUT ok');
         return res.json();
       } 
       return Promise.reject(`Ошибка: ${res.status}`);
@@ -150,7 +149,6 @@ export const handleDislikeCard = (card) => {
   })
     .then(res => {
       if (res.ok) {
-        console.log('DELETE ok');
         return res.json();
       }  
       return Promise.reject(`Ошибка: ${res.status}`);
@@ -167,7 +165,6 @@ export const getLikes = (card) => {
   })
     .then(res => {
       if (res.ok) {
-        console.log('GET ok');
         return res.json();
       }  
       return Promise.reject(`Ошибка: ${res.status}`);

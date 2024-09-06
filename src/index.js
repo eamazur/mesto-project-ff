@@ -179,10 +179,6 @@ function createCardHandler() {
 
     const nameInputValue = nameInput.value;
     const linkInputValue = linkInput.value;
-
-    //TODO Fix card creation
-    //console.log(nameInputValue);
-   // console.log(linkInputValue);
     
     renderLoading(true, formElement);
 

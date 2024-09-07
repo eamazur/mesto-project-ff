@@ -52,25 +52,7 @@ const openCard = function (imageElement, popup) {
 const infoPromises = [getUserInfo(), getInitialCards()]
 
 enableValidation({
-  formSelector: '.popup_type_edit .popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-})
-
-enableValidation({
-  formSelector: '.popup_type_avatar_edit .popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__error_visible'
-})
-
-enableValidation({
-  formSelector: '.popup_type_new-card .popup__form',
+  formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
   inactiveButtonClass: 'popup__button_disabled',

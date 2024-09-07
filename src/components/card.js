@@ -60,6 +60,9 @@ export const deleteCard = function (card, cardElement) {
   handleDeleteCard(card)
   .then(() => {
     cardElement.remove();
+  })
+  .catch((err) => {
+    console.log(err);
   });
 };
 

@@ -49,15 +49,18 @@ const checkInputValidity = (formElement, inputElement, inputErrorClass) => {
 };
 
 const setEventListeners = (formSelector, inputSelector, inputErrorClass, submitButtonSelector, inactiveButtonClass) => {
-  const form = document.querySelector(formSelector);
-  const inputList = Array.from(form.querySelectorAll(inputSelector));
-  const buttonElement = form.querySelector(submitButtonSelector);
+  const forms = Array.from(document.querySelectorAll(formSelector));
 
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', function () {
-      checkInputValidity(form, inputElement, inputErrorClass);
-      toggleButtonState(inputList, buttonElement, inactiveButtonClass);
-      toggleInputState(inputList, inputElement, inputErrorClass);
+  forms.forEach((form) => {
+    const inputList = Array.from(form.querySelectorAll(inputSelector));
+    const buttonElement = form.querySelector(submitButtonSelector);
+
+    inputList.forEach((inputElement) => {
+      inputElement.addEventListener('input', function () {
+        checkInputValidity(form, inputElement, inputErrorClass);
+        toggleButtonState(inputList, buttonElement, inactiveButtonClass);
+        toggleInputState(inputList, inputElement, inputErrorClass);
+      });
     });
   });
 };

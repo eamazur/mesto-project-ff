@@ -1,143 +1,388 @@
-<!doctype html>
-<html lang="ru">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Mesto</title>
-</head>
-<body class="page">
-  <div class="page__content">
-    <header class="header page__section">
-      <img src="<%=require('./images/logo.svg')%>" alt="Логотип проекта масто" class="logo header__logo">
-    </header>
-    <main class="content">
-      <section class="profile page__section">
-        <div class="profile__image-overlay">
-          <img src="<%=require('./images/edit-icon.svg')%>" alt="иконка редактирования аватара" class="profile__avatar-icon">
-        </div>
-        <div class="profile__image" style="background-image: url(<%=require('./images/avatar.jpg')%>);"></div>
-        
-        <div class="profile__info">
-          <h1 class="profile__title">Жак-Ив Кусто</h1>
-          <button class="profile__edit-button" type="button"></button>
-          <p class="profile__description">Исследователь океана</p>
-        </div>
-        <button class="profile__add-button" type="button"></button>
-      </section>
-      <section class="places page__section">
-        <ul class="places__list">
-        </ul>
-      </section>
-    </main>
-    <footer class="footer page__section">
-      <p class="footer__copyright">
-        © 2021 Mesto Russia
-      </p>
-    </footer>
-    <div class="popup popup_type_avatar_edit popup_is-animated">
-      <div class="popup__content">
-        <button type="button" class="popup__close"></button>
-        <h3 class="popup__title">Обновить аватар</h3>
-        <form class="popup__form" name="edit-avatar">
-          <input 
-            type="url" 
-            name="link" 
-            class="popup__input popup__input_type_avatar_url" 
-            placeholder="Ссылка на картинку" 
-            id="popup__input_type_avatar_url"
-            required>
-          <span class="popup__error popup__input_type_avatar_url-error"></span>
-          <button type="submit" class="button popup__button">Сохранить</button>
-        </form>
-      </div>
-    </div>
-    <div class="popup popup_type_edit popup_is-animated">
-      <div class="popup__content">
-        <button type="button" class="popup__close"></button>
-        <h3 class="popup__title">Редактировать профиль</h3>
-        <form class="popup__form" name="edit-profile">
-          <input 
-            type="text" 
-            minlength="2"
-            maxlength="40"
-            pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$"
-            data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
-            name="name" 
-            class="popup__input popup__input_type_name" 
-            placeholder="Имя"
-            id="popup__input_type_name" 
-            required>
-          <span class="popup__error popup__input_type_name-error"></span>
-          <input 
-            type="text"
-            minlength="2"
-            maxlength="200"
-            pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$"
-            data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
-            name="description"
-            class="popup__input popup__input_type_description" 
-            placeholder="Занятие" 
-            id="popup__input_type_description" 
-            required>
-          <span class="popup__error popup__input_type_description-error"></span>
-          <button type="submit" class="button popup__button">Сохранить</button>
-        </form>
-      </div>
-    </div>
-    <div class="popup popup_type_new-card popup_is-animated">
-      <div class="popup__content">
-        <button type="button" class="popup__close"></button>
-        <h3 class="popup__title">Новое место</h3>
-        <form class="popup__form" name="new-place">
-          <input 
-            type="text"
-            minlength="2"
-            maxlength="30"
-            pattern="^[a-zA-Zа-яА-ЯёЁ\s\-]+$"
-            data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
-            name="place-name" 
-            class="popup__input popup__input_type_card-name" 
-            placeholder="Название"
-            id="popup__input_type_card-name" 
-            required>
-          <span class="popup__error popup__input_type_card-name-error"></span>
-          <input 
-            type="url" 
-            name="link" 
-            class="popup__input popup__input_type_url" 
-            placeholder="Ссылка на картинку" 
-            id="popup__input_type_url"
-            required>
-          <span class="popup__error popup__input_type_url-error"></span>
-          <button type="submit" class="button popup__button">Сохранить</button>
-        </form>
-      </div>
-    </div>
-    <div class="popup popup_type_image popup_is-animated">
-      <div class="popup__content popup__content_content_image">
-        <button type="button" class="popup__close"></button>
-        <img src="" alt="" class="popup__image">
-        <p class="popup__caption"></p>
-      </div>
-    </div>
-  </div>
+  <title>Nueva Imagen Beauty School</title>
+  <link rel="icon" href="./images/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="./images/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./images/apple-touch-icon.png"> 
 
-  <template id="card-template">
-    <li class="places__item card">
-      <img class="card__image" src="" alt="" />
-      <button type="button" class="card__delete-button"></button>
-      <div class="card__description">
-        <h2 class="card__title">
-        </h2>
-        <div class="card__like-button-container">
-          <button type="button" class="card__like-button"></button>
-          <span class="card__like-counter"></span>
-        </div>
-        
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;1,700&family=Montserrat:wght@100..900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./index.css" />
+</head>
+
+
+<body class="page">
+
+  <header class="header">
+    <a href="#top" class="header__link"><img src="./images/logo.svg" class="logo" alt="Nueva Imagen Beauty School logo"></a>
+    <nav >
+      <ul class="header__navigation">
+        <li class="header__heading">
+          <a href="#why-us" class="header__link">Why us</a>
+        </li>
+        <li class="header__heading">
+          <a href="#reviews" class="header__link">Reviews</a>
+        </li>
+        <li class="header__heading">
+          <a href="#courses" class="header__link">Courses</a>
+        </li>
+        <!--
+        <li  class="header__heading">
+          <a href="#community" class="header__link">Community</a>
+        </li>
+        -->
+        <li  class="header__heading">
+          <a href="#faq" class="header__link">FAQ</a>
+        </li>
+        <li class="header__heading">
+          <a href="#contacts" class="header__link">Contacts</a>
+        </li>
+      </ul>
+    </nav>
+    <div class="header__submenu">
+      <div class="header__contacts">
+        <a href="tel:+17203730955" class="header__phone">720 373-0955</a>
+        <p class="header__time">9:00 AM - 5:00 PM</p>
       </div>
-    </li>
-  </template>
+      <button class="button button-primary">Free consultation</button>
+      <div class="language-select">
+        <button class="button button-language">
+          <img src="./images/spain-icon.svg" class="button-language__icon" alt="Flag of Spain">
+          <span class="button-language__text">Es</span>
+        </button>
+        <button class="button button-language button-language_is-active">
+          <img src="./images/us-icon.svg" class="button-language__icon" alt="Flag of the USA">
+          <span class="button-language__text">En</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="section section_first">
+    <h1 class="" id="home"> 
+      Build your career in the Beauty Industry with
+      <span>Bilingual Education</span>
+      &
+      <span>Hands-On Training</span>
+    </h1>
+  
+    <ul>
+      <li>
+        <img src="./images/experience-icon.svg" alt="15+">
+        years
+      </li>
+      <li>300+ employed alumni</li>
+      <li>
+        <img src="./images/pivot-point-icon.png" alt="15+">
+        Pivot Point study principles
+      </li>
+      <li>
+        <img src="./images/bilingual-icon.svg" alt="">
+        Spanish & English
+      </li>
+    </ul>
+    <div class="video-container">
+      <video src="./images/videos/IMG_5955.mp4" class="video-container__video" autoplay muted loop></video>
+    </div>
+  </section>
+
+  <section class="section">
+    <div>
+      <h2 id="why-us">
+        We Support You on your
+        <span>Path to Success</span>
+      </h2>
+      <div>
+        <p>We help Spanish community build rewarding, high-paying careers in the beauty industry of Colorado for 15 years</p>
+        <div>
+          <button class="button">Free consultation</button>
+          <button class="button">
+            Choose your course
+            <img src="./images/arrow-icon.svg" alt="arrow down">
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <div>
+      <div>
+        <h3>Our <span>prices are 30% lower</span> than competitors</h3>
+        <p>We aim to make education З community, which is why we keep our prices at a minimum</p>
+      </div>
+      <div>
+        <h3>We provide <span>bilingual education</span></h3>
+        <p>We want to make Spanish speakers feel as comfortable as possible. For that our owner recently secured the opportunity to take final exams in Spanish in Colorado</p>
+        <img src="./images/bilingual-icon.svg" alt="two flags">
+      </div>
+      <img src="./images/photos/IMG_5855.webp" style="width: 300px;" alt="photo of a female student during class">
+    </div>
+    <div>
+      <img src="./images/photos/IMG_5630.webp" style="width: 300px;" alt="photo of students during a lecture">
+      <div>
+        <h3><span>70%</span> of our education is <span>practice</span></h3>
+        <p>First on professional mannequines and then on people</p>
+      </div>
+      <div>
+        <h3>We accept pupils with SSN and Item Driver License</h3>
+        <p>We want to make Spanish speakers feel as comfortable as possible. For that our owner recently secured the opportunity to take final exams in Spanish in Colorado</p>
+      </div>
+    </div>
+  </section>
+  
+  <section class="section">
+    <h2 id="reviews">See why <span>People</span> like you <span>Choose Us</span></h2>
+    <div>
+      <a href=""><img src="" alt=""></a>
+      <a href=""><img src="" alt=""></a>
+      <a href="">@NuevaImagenBeautySchool</a>
+    </div>
+    <div class="reviews-container">
+      <div class="review">
+        <p>“We aim to make education accessible to the Spanish-speaking community, which is why we keep our prices at a minimum”</p>
+        <div>
+          <img src="" alt="">
+          <div>
+            <p>Gabriel, barber</p>
+            <p>@barbergabrielaurora</p>
+          </div>
+        </div>
+      </div>
+      <div class="review">
+        <p>“We aim to make education accessible to the Spanish-speaking community, which is why we keep our prices at a minimum”</p>
+        <div>
+          <img src="" alt="">
+          <div>
+            <p>Gabriel, barber</p>
+            <p>@barbergabrielaurora</p>
+          </div>
+        </div>
+      </div>
+      <div class="review">
+        <div>
+          <video src=""></video>
+        </div>
+        <p></p>
+      </div>
+      <div class="review">
+        <img src="" alt="">
+        <p></p>
+      </div>
+      <div class="review">
+        <p>“We aim to make education accessible to the Spanish-speaking community, which is why we keep our prices at a minimum”</p>
+        <div>
+          <div>
+            <p>Gabriel, barber</p>
+            <p>@barbergabrielaurora</p>
+          </div>
+        </div>
+      </div>
+      <div>
+          <button><img src="./images/shevron.svg" alt=""></button>
+          <p><span>1</span>/3</p>
+          <button><img src="./images/shevron.svg" alt=""></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2 id="courses">Choose your <span>Career Track</span></h2>
+
+    <div class="card card-big">
+      <div class="chips">
+        <div class="chip">
+          <p>7 months</p>
+        </div>
+        <div class="chip">
+          <p>1500 hours</p>
+        </div>
+        <div class="chip">
+          <p>start in December</p>
+        </div>
+      </div>
+      <img src="" alt="">
+      <div class="text-info">
+        <div>
+          <h3>Cosmetology</h3>
+          <p>$14,300</p>
+        </div>
+        <div>
+          <p>Our intensive program teaches essential skills in hair, nails, skincare, and makeup, along with the business know-how needed to succeed. Graduate ready to pass the state exam and become a licenced professional</p>
+          <div>
+            <p>Group classes twice a week</p>
+            <p>90 minutes</p>
+            <p>Graduate May 2025</p>          
+          </div>
+        </div>
+        <div>
+          <button>Free consultation</button>
+          <p>Find out all the details about the programs at a meeting</p>
+          <button>Learn More</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card card-small">
+      <div class="chips">
+        <div class="chip">
+          <p>7 months</p>
+        </div>
+        <div class="chip">
+          <p>1500 hours</p>
+        </div>
+        <div class="chip">
+          <p>start in December</p>
+        </div>
+      </div>
+      <img src="" alt="">
+      <div class="text-info">
+        <div>
+          <h3>Hairstylist</h3>
+          <p>$14,300</p>
+        </div>
+        <div>
+          <div>
+            <p>40 credits/ 172 days</p>
+            <p>Classroom and digital</p>
+          </div>
+          <p>Gain essential skills in hair care, styling, color, and texture services, along with a solid foundation in salon safety, ethics, and customer service. Graduate ready for the state licensing exam and entry-level positions in the beauty industry</p>
+        </div>
+        <div>
+          <button>Free consultation</button>
+          <p>Find out all the details about the programs at a meeting</p>
+          <button>Learn More</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ 
+
+  <section class="section">
+    <div>
+      <h2 id="community">Get a <span>Free Consultation</span></h2>
+      <p>Our specialist will help you choose the best course for you and answer all of your questions </p>
+    </div>
+    <form action="">
+      <label for="">Name</label>
+      <input type="text">
+      <label for="">Phone number</label>
+      <input type="text">
+      <label for="">Message</label>
+      <input type="text">
+      <button>Submit</button>
+      <div>
+        <input type="checkbox" name="" id="">
+      <span>I agree with terms of <a href="">Privacy Policy</a></span>
+      </div>
+    </form>
+  </section>
+
+  <section class="section">
+    <h2 id="faq">Popular <span>Questions</span></h2>
+  
+    <div class="faq-container">
+      <div class="question-container">
+        <div class="always-visible">
+          <h3>Рассрочка?</h3>
+          <img src="./images/shevron.svg" alt="">
+        </div>
+        <div class="collapsible">
+          Answer the frequently asked question in a simple sentence, a longish paragraph, or even in a list.
+        </div>
+      </div>
+      <div class="question-container">
+        <div class="always-visible">
+          <h3>Рассрочка?</h3>
+          <img src="./images/shevron.svg" alt="">
+        </div>
+        <div class="collapsible">
+          Answer the frequently asked question in a simple sentence, a longish paragraph, or even in a list.
+        </div>
+      </div>
+      <div class="question-container">
+        <div class="always-visible">
+          <h3>Рассрочка?</h3>
+          <img src="./images/shevron.svg" alt="">
+        </div>
+        <div class="collapsible">
+          Answer the frequently asked question in a simple sentence, a longish paragraph, or even in a list.
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3>Any questions left?</h3>
+      <p>We can answer all of your questions during our free consultation</p>
+      <button>Free consultation</button>
+    </div>
+  </section>
+
+
+  <section class="section">
+    <h2 id="contacts"><span>Contact</span> us</h2>
+    <div>
+      <div>
+        <div>
+          <div>
+            <img src="" alt="">
+            <a href="">15210 e. 6th ave, unit 3
+              aurora co, 80011 </a>
+          </div>
+          <div>
+            <img src="" alt="">
+            <a href="">720 373-0955</a>
+          </div>
+          <div>
+            <img src="" alt="">
+            <p>Every day 9:00 AM - 5:00 PM</p>
+          </div>
+          <div>
+            <img src="" alt="">
+            <a href="">lauraesanchez@ymail.com</a>
+          </div>
+        </div>
+        <div>
+          <img src="" alt="">
+          <img src="" alt="">
+        </div>
+      </div>
+      <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1AdS1s5nccahsSeOg8Mdi-zXLYNnmr_I&ehbc=2E312F&noprof=1" width="640" height="480"></iframe>
+    </div>
+  </section>
+
+  <footer>
+    <img src="./images/logo.svg" alt="" class="logo">
+    <nav >
+      <ul class="header__navigation">
+        <li class="header__heading">
+          <a href="#why-us" class="header__link">Why us</a>
+        </li>
+        <li class="header__heading">
+          <a href="#reviews" class="header__link">Reviews</a>
+        </li>
+        <li class="header__heading">
+          <a href="#courses" class="header__link">Courses</a>
+        </li>
+        <!--
+        <li  class="header__heading">
+          <a href="#community" class="header__link">Community</a>
+        </li>
+        -->
+        <li  class="header__heading">
+          <a href="#faq" class="header__link">FAQ</a>
+        </li>
+        <li class="header__heading">
+          <a href="#contacts" class="header__link">Contacts</a>
+        </li>
+      </ul>
+    </nav>
+    <p>© 2023-<span>2024</span> Nueva Imagen Beauty School</p>
+  </footer>
 </body>
 </html>

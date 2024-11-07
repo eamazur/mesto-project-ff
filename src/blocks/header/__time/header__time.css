@@ -1,0 +1,4 @@
+.header__time {
+  font-size: var(--text-size-small);
+  margin: 0;
+}

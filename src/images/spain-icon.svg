@@ -1,0 +1,16 @@
+<svg width="18" height="14" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect y=".571" width="18" height="12.857" rx="2" fill="#fff"/>
+  <mask id="a" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="0" width="18" height="14">
+    <rect y=".571" width="18" height="12.857" rx="2" fill="#fff"/>
+  </mask>
+  <g mask="url(#a)">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 4h18V.57H0V4ZM0 13.428h18V10H0v3.428Z" fill="#DD172C"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M0 10h18V4H0v6Z" fill="#FFD133"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.714 6.571h.857V7h-.857V6.57Z" fill="#FFEDB1"/>
+    <path d="M4.035 6.837a.333.333 0 0 1 .332-.36h.694c.195 0 .349.166.332.36l-.083.995a.598.598 0 0 1-1.192 0l-.083-.995Z" stroke="#A41517" stroke-width=".667"/>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M3.857 7h1.714v.428h-.428l-.429.857-.428-.857h-.429V7Z" fill="#A41517"/>
+    <rect x="2.571" y="5.714" width=".857" height="3" rx=".429" fill="#A41517"/>
+    <rect x="6" y="5.714" width=".857" height="3" rx=".429" fill="#A41517"/>
+    <path d="M3.857 5.543c0-.379.307-.686.686-.686h.343c.378 0 .685.307.685.686a.171.171 0 0 1-.171.172H4.028a.171.171 0 0 1-.171-.172Z" fill="#A41517"/>
+  </g>
+</svg>

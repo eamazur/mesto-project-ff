@@ -1,20 +1,34 @@
-@import url(./__navigation/header__navigation.css);
-@import url(./__heading/header__heading.css);
-@import url(./__link/header__link.css);
-@import url(./__contacts/header__contacts.css);
-@import url(./__submenu/header__submenu.css);
-@import url(./__phone/header__phone.css);
-@import url(./__time/header__time.css);
+@import url('./__logo/header__logo.css');
 
 .header {
-  position: sticky;
-  top: 0;
-  background-color: var(--background-color-page);
-  z-index: 1;
+  min-height: 120px;
+  font-family: 'Inter', Arial, sans-serif;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
   align-items: center;
-  padding: 16px 0;
-  margin-inline: var(--page-side-margin)
+  flex-shrink: 0;
+}
+
+.header::before {
+  content: '';
+  width: 100%;
+  height: 1px;
+  opacity: 0.7;
+  background: #545454;
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  transform: translateX(-50%);
+  bottom: 0;
+}
+
+@media screen and (max-width: 480px) {
+  .header {
+    min-height: 85px;
+  }
+  .header::before {
+    width: calc(100% + 40px);
+  }
 }

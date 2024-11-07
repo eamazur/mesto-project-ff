@@ -1,16 +1,20 @@
-.merriweather-bold {
-  font-family: "Merriweather", serif;
-  font-weight: 700;
-  font-style: normal;
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 400;
+  src: url("./fonts/Inter-Regular.woff2") format("woff2");
 }
 
-.merriweather-bold-italic {
-  font-family: "Merriweather", serif;
-  font-weight: 700;
-  font-style: italic;
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 500;
+  src: url("./fonts/Inter-Medium.woff2") format("woff2");
 }
 
-.montserrat {
-  font-family: "Montserrat", sans-serif;
-  font-style: normal;
+@font-face {
+  font-family: 'Inter';
+  font-style:  normal;
+  font-weight: 900;
+  src: url("./fonts/Inter-Black.woff2") format("woff2");
 }

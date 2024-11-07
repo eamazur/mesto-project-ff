@@ -1,9 +1,0 @@
-@import url(./__video/video-container__video.css);
-
-.video-container {
-  inline-size: 100%;
-  block-size: 325px;
-  border-radius: var(--radius-medium);
-  overflow: hidden;
-  object-position: center;
-}
